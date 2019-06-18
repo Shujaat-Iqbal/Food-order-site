@@ -1,0 +1,34 @@
+<h1>Reciept</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>Price</th>
+
+      <th>Item Price</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let listi of lis">
+          <td *ngIf="getquan(listi)>=1">
+            {{listi.name}}
+          </td>
+    
+          <td *ngIf="getquan(listi)>=1">{{listi.Quantity}}</td>
+          <td *ngIf="getquan(listi)>=1">{{listi.price | currency:'USD':true}}</td>
+          <td *ngIf="getquan(listi)>=1">{{listi.tprice | currency:'USD':true}}</td>
+        </tr>
+  
+  </tbody>
+  <tfoot>
+
+      <tr>
+          <td>Total Price</td>
+          <td></td>
+          <td></td>
+          <td>{{CheckOutComponent | currency:'USD':true}}</td>
+        </tr>
+      </tfoot>
+</table>
+<h2 >Thank You for using our services</h2>

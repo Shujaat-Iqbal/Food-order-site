@@ -1,0 +1,174 @@
+<div class="row">
+  <div class="col-3">
+    <div class="sticky-top">
+      <ul class="list-group">
+        <a>
+
+          <li class="list-group-item list-group-item-action" (click)="setval('mon')">Monday</li>
+        </a>
+        <a>
+
+          <li class="list-group-item list-group-item-action" (click)="setval('tue')">Tuesday</li>
+        </a>        <a>
+
+          <li class="list-group-item list-group-item-action" (click)="setval('wed')">Wednesday</li>
+        </a>        <a>
+
+          <li class="list-group-item list-group-item-action" (click)="setval('thu')">Thursday</li>
+        </a>        <a>
+
+          <li class="list-group-item list-group-item-action" (click)="setval('fri')">Friday</li>
+        </a>        <a>
+
+          <li class="list-group-item list-group-item-action" (click)="setval('sat')">Saturday</li>
+        </a>        <a>
+
+          <li class="list-group-item list-group-item-action" (click)="setval('sun')">Sunday</li>
+        </a>
+        <!--<button (click)="setval('mon')"
+                class="btn btn-primary btn-block">Add to
+                Cart</button>-->
+        <!--
+        <li class="list-group-item list-group-item-action" routerLink="/">Tuesday</li>
+        <li class="list-group-item list-group-item-action" routerLink="/">Wednesday</li>
+        <li class="list-group-item list-group-item-action" routerLink="/">Thursday</li>
+        <li class="list-group-item list-group-item-action" routerLink="/">Friday</li>
+        <li class="list-group-item list-group-item-action" routerLink="/">Saturday</li>
+        <li class="list-group-item list-group-item-action" routerLink="/">Sunday</li>
+        -->
+      </ul>
+    </div>
+  </div>
+  <div class="col">
+    <div class="row">
+      <ng-container *ngFor="let p of lis"><!--; let i=index">-->
+        <div *ngIf="getstat(p)" class="col">
+          <div class="card" style="width: 20rem;">
+            <img src={{p.pic}} class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{p.name}}</h5>
+              <p class="card-text">{{p.status}}</p>
+              <p class="card-text">{{p.price | currency:'USD':true}}</p>
+            </div>
+            <div class="cardfooter">
+
+              <button *ngIf="getquan(p)===0; else modifyval" (click)="incrementitem(p)"
+                class="btn btn-primary btn-block">Add to
+                Cart</button>
+              <ng-template #modifyval>
+                <div class="row no-gutters">
+                  <div class="col-2">
+                    <button (click)="decrementitem(p)" class="btn btn-primary btn-block">-</button>
+                  </div>
+                  <div class="col text-center">
+                    {{p.Quantity}} Added
+                  </div>
+                  
+                  <div class="col-2">
+                    <button (click)="incrementitem(p)" class="btn btn-primary btn-block">+</button>
+                  </div>
+                </div>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+        <!--<div *ngIf="(i+1)%2==0" class="w-100"></div>-->
+      </ng-container>
+      <!--
+      <div class="col">
+
+        <div class="card" style="width: 20rem;">
+          <img src="https://i5.walmartimages.ca/images/Large/428/5_r/6000195494285_R.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Food1</h5>
+            <p class="card-text">$ 3.0</p>
+          </div>
+          <div class="cardfooter">
+
+            <button class="btn btn-primary btn-block" (click)="count1=count1+1" ng-init="count1=10">Add to
+              Cart</button>
+            <div class="card-text">
+              Count: {{count1}}</div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="col">
+
+        <div class="card" style="width: 20rem;">
+          <img src="https://www.tasteofhome.com/wp-content/uploads/2017/10/exps28800_UG143377D12_18_1b_RMS-696x696.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Food2</h5>
+            <p class="card-text">$ 2.5</p>
+          </div>
+          <div class="cardfooter">
+
+            <button class="btn btn-primary btn-block">Add to Cart</button>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="w-100">
+
+      </div>
+
+
+      <div class="col">
+
+        <div class="card" style="width: 20rem;">
+          <img src="https://www.thespruceeats.com/thmb/iEFHmcSWDhuGbwHmD2lx6pOykVQ=/450x0/filters:no_upscale():max_bytes(150000):strip_icc()/1-bean-burrito-56a9bee83df78cf772aa2994.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Food3</h5>
+            <p class="card-text">$ 3.5</p>
+          </div>
+          <div class="cardfooter">
+
+            <button class="btn btn-primary btn-block">Add to Cart</button>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+
+        <div class="card" style="width: 20rem;">
+          <img src="https://cdn-image.foodandwine.com/sites/default/files/styles/medium_2x/public/201011-xl-jordons-romaine-salad.jpg?itok=qJtn-6eZ" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Food4</h5>
+            <p class="card-text">$ 4.0</p>
+          </div>
+          <div class="cardfooter">
+
+            <button class="btn btn-primary btn-block">Add to Cart</button>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="w-100">
+
+      </div>
+
+
+      <div class="col">
+
+          <div class="card" style="width: 20rem;">
+            <img src="https://images-gmi-pmc.edge-generalmills.com/d6abce12-3f88-4172-b573-caa93f248777.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Food5</h5>
+              <p class="card-text">$ 4.0</p>
+            </div>
+            <div class="cardfooter">
+  
+              <button class="btn btn-primary btn-block" >Add to Cart</button>
+              
+            </div>
+          </div>
+        </div>
+-->
+    </div>
+
+
+  </div>
+</div>
